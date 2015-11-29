@@ -1,0 +1,68 @@
+---
+title: "rTinySegmenter"
+author: '@yamano357'
+date: "2015.11.30"
+output: html_document
+---
+
+```{r opts_chunk, echo = FALSE}
+knitr::opts_chunk$set(comment = NA)
+```
+
+
+# rTinySegmenter
+rTinySegmenter is a R version of TinySegmenter, which is an extremely compact Japanese tokenizer originally written in JavaScript by Mr. Taku Kudo.
+
+## Installation
+- Install from Github:
+```{r install, eval = FALSE}
+devtools::install_github("yamano357/rTinySegmenter")
+```
+
+## Usage
+```{r message = FALSE}
+library(dplyr)
+library(rTinySegmenter)
+
+# Original Model 
+segmentr <- tiny_segmenter$new(text = "私の名前は中野です")
+segmentr$tokenize()
+
+names(x = segmentr$model$TEMPLATE)
+segmentr$model$TEMPLATE[[names(x = segmentr$model$TEMPLATE)[1]]]
+
+# feature
+segmentr$model_attr$unit %>% 
+  as.data.frame()
+
+# feature valus
+segmentr$model_attr$score %>% 
+  as.data.frame()
+
+
+# Custom Model
+small_segmentr <- tiny_segmenter$new(
+  text = "私の名前は中野です", 
+  model_file = system.file(package = "rTinySegmenter", "extdata", "small-model.json")
+)
+small_segmentr$tokenize()
+
+names(x = small_segmentr$model$TEMPLATE)
+
+
+# feature
+small_segmentr$model_attr$unit %>% 
+  as.data.frame()
+
+```
+
+## TODO
+- bug fix  
+- speeding up  
+- create model  
+
+
+## See Also
+- [TinySegmenter](http://chasen.org/~taku/software/TinySegmenter/)
+- [chezou/TinySegmenter.jl](https://github.com/chezou/TinySegmenter.jl) 
+

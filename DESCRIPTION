@@ -1,0 +1,18 @@
+Package: rTinySegmenter
+Type: Package
+Title: Very Compact Japanese Tokenizer
+Version: 0.1
+Date: 2015-11-28
+Author: Yoshiaki AMANO
+Maintainer: Yoshiaki AMANO <yamano357@gmail.com>
+Description: rTinySegmenter is a R version of TinySegmenter, which is an extremely compact Japanese tokenizer originally written in JavaScript by Mr. Taku Kudo.
+License: BSD-3-Clause
+Imports:
+    dplyr,
+    tidyr,
+    jsonlite,
+    iterators,
+    foreach,
+    stringi,
+    stringr
+LazyData: TRUE
